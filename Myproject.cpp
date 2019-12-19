@@ -199,3 +199,20 @@ while(l==0)
     {
     header=insertBack(header,selectEx(heade,i,0),selectEx(heade,i,1),selectEx(heade,i,2),selectEx(heade,i,3));
 }
+int temprar=0,wt=0;
+double average ;
+int j = 0 ;
+fp = fopen(output, "a");
+fprintf(fp,"\Priority scheduling non-preemptive ");
+fclose(fp);
+header=sortMassiv(header);
+int counter =0 , timer=0,smallest;
+struct node *proc = NULL;
+struct node *proceds = header;
+struct node *header2 = NULL;
+struct node *tmp = proceds;
+for(i = 1;i<=sz;i++)
+    {
+    header2=insertBack(header2,selectEx(tmp,i,0),selectEx(tmp,i,1),selectEx(tmp,i,2),selectEx(tmp,i,3));
+}
+display(header2);
