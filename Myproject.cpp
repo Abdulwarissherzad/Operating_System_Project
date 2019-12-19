@@ -172,3 +172,30 @@ struct node *header = NULL;int inc = 1;
 				}
 	}
 }
+void oneMore(struct node *header)
+{
+    int bt,art,prior;
+    printf("\nWrite burst time : ");
+    scanf("%d",&bt);
+        printf("\nWrite arrival time : ");
+            scanf("%d",&art);
+            printf("\nWrite priority :");
+                scanf("%d",&prior);
+                header= insertBack(header,siz(header)+1,bt,art,prior);
+}
+void PriorNonPreempt(struct node *heade)
+{int l = 0 ,i=0;char newV;
+while(l==0)
+{
+    printf("Do you want add new variables? y/n");
+    scanf("%c",&newV);
+   if(newV=='y') oneMore(heade);
+   else if(newV=='n') break;
+   else {printf("\nWrong choise select again\n");}
+}
+    int sz  = siz(heade),waitingTime = 0;
+    struct node *header=NULL;
+    for(i = 1;i<=sz;i++)
+    {
+    header=insertBack(header,selectEx(heade,i,0),selectEx(heade,i,1),selectEx(heade,i,2),selectEx(heade,i,3));
+}
