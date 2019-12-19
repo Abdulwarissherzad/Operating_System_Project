@@ -193,7 +193,7 @@ while(l==0)
    else if(newV=='n') break;
    else {printf("\nWrong choise select again\n");}
 }
-    int sz  = siz(heade),waitingTime = 0;
+    int sz  = siz(heade),waitingTime = 0;//Reding from LinkList
     struct node *header=NULL;
     for(i = 1;i<=sz;i++)
     {
