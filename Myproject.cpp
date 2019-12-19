@@ -216,3 +216,28 @@ for(i = 1;i<=sz;i++)
     header2=insertBack(header2,selectEx(tmp,i,0),selectEx(tmp,i,1),selectEx(tmp,i,2),selectEx(tmp,i,3));
 }
 display(header2);
+for(timer=0;counter!=sz;timer++)
+{
+smallest=sz+2;
+    for(i = 1;i<=sz;i++)
+    {
+        if(selectEx(proceds,i,2) <= timer )
+		{
+		if(selectEx(proceds,i,3)<selectEx(proceds,smallest,3) )
+		{
+		if(selectEx(proceds,i,1)>0)
+        {
+            smallest=i;
+           printf("\nSmallest = %d\n",smallest);
+        }
+		}
+		}
+    }
+           timer+=smallest;
+   proc=insertBack(proc,selectEx(proceds,smallest,0),selectEx(proceds,smallest,1),selectEx(proceds,smallest,2),selectEx(proceds,smallest,3));
+       AddNumb(proceds,smallest,0,1);
+    if(selectEx(proceds,smallest,1)==0)
+    {
+        counter++;
+    }
+}
