@@ -401,3 +401,57 @@ smallest=sz+2;
     {   counter++;
     }
 }
+printf("\n");
+display(proc);
+int nums[4];
+int sz2=siz(proc);
+int k = 0 ;
+int newLL[sz2+1][5];
+j = 1;
+int increm  = 1 ;
+int wat =0 ,kk=0;
+int uu = 0 ,ext = 0,kot=0,sumAll=0;
+ fp = fopen(output, "a");
+fprintf(fp,"\nShortest Job First Preemptive\n");
+fclose(fp);
+for(i = 1 ; i <=sz;i++)
+{
+for(j = 1 +uu ; j<=sz2;j++){
+if(selectEx(proc,j,1)==0)
+{
+if(selectEx(proc,j,1)==0)
+{
+int a =1;
+k=j-selectEx(proc,j,2)-selectEx(header2,selectEx(proc,j,0),1);
+a++;
+            printf("i%d = %d ms\n",selectEx(proc,j,0),k);
+            uu=j;
+            sumAll+=k;
+             fp = fopen(output, "a");
+fprintf(fp,"i%d = %d ms\n",selectEx(proc,j,0),k);
+fclose(fp);
+            break;}
+        }}
+}
+double answer = (double)sumAll/(sz);
+ fp = fopen(output, "a");
+fprintf(fp,"Average waiting time   = %f",answer);
+fclose(fp);
+printf("Average waiting time   = %f",answer);
+}
+void ShortestNonPreemt(struct node *heade)
+{int l = 0 ,i=0;char newV;
+while(l==0)
+{
+    printf("Do you want add new variables? y/n");
+    scanf("%c",&newV);
+   if(newV=='y') oneMore(heade);
+   else if(newV=='n') break;
+   else {printf("\nWrong choise select again\n");}
+}
+    int sz  = siz(heade),waitingTime = 0;
+    struct node *header=NULL;
+    for(i = 1;i<=sz;i++)
+    {
+    header=insertBack(header,selectEx(heade,i,0),selectEx(heade,i,1),selectEx(heade,i,2),selectEx(heade,i,3));
+}
