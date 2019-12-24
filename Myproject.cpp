@@ -493,3 +493,211 @@ smallest=sz+2;
     {
         counter++;  }
 }
+printf("\n");
+fp = fopen(output, "a");
+printf("P%d = %d ms\n",selectEx(proc,1,0),0);
+fprintf(fp,"\nP%d = %d ms\n",selectEx(proc,1,0),0);
+fclose(fp);
+for( i = 1 ; i <sz;i++)
+{
+temprar+=selectEx(proc,i,1);
+{
+waitingTime=temprar-selectEx(proc,i+1,2);
+wt+=waitingTime;
+printf("P%d = %d ms\n",selectEx(proc,i+1,0),waitingTime);
+fp = fopen(output, "a");
+fprintf(fp,"P%d = %d ms\n",selectEx(proc,i+1,0),waitingTime);
+fclose(fp);
+}}
+average = (double)wt/(i);
+fp = fopen(output, "a");
+fprintf(fp,"Average waiting time = %f",average);
+fclose(fp);
+printf("Average waiting time = %f",average);}
+void RoundRobin(struct node *heade)
+{
+struct node *header=NULL;
+    int l = 0 ;char newV;
+while(l==0)
+{
+    printf("Do you want add new variables? y/n \n");
+    scanf("%c",&newV);
+   if(newV=='y') oneMore(heade);
+   else if(newV=='n') break;
+   else {printf("\nWrong choise select again\n");}
+}
+printf("\nWrite quantum for each process\n");
+int quant;
+scanf("%d",&quant);
+	int sz  = siz(heade),waitingTime = 0;
+    int selectMass[4],LL[sz][5];
+int i = 0,temprar=0,wt=0;
+    for(i = 1;i<=sz;i++)
+    {
+    header=insertBack(header,selectEx(heade,i,0),selectEx(heade,i,1),selectEx(heade,i,2),selectEx(heade,i,3));
+}
+double average ;
+int exit = 0 ;
+struct node *proc =header;
+int j = 0 ;
+int numb;
+proc=sortMassiv(proc);
+    display(proc);
+ int wtt =0 ;
+    struct node *processes = NULL;
+    int maxi = 0;
+    for(i = 1 ; i <sz;i++)
+    {
+        if(selectEx(proc,i,1)>selectEx(proc,i+1,1)) maxi = selectEx(proc,i,1);
+        }
+      int d = 0 ,kolvo =0 ,waiting =0 ;
+    for(int d = maxi ; d>=0;d-=quant)
+        {kolvo++;
+        for(i = 1; i<=sz;i++)
+        {
+            if(selectEx(proc,i,1)!=0)
+            {
+                if(selectEx(proc,i,1)==quant)
+                {
+                       AddNumb(proc,i,0,1);
+                    processes = insertBack(processes,selectEx(proc,i,0),selectEx(proc,i,1),selectEx(proc,i,2),selectEx(proc,i,3));
+                  for(wtt=1;wtt<=sz;wtt++)
+                  {
+                      if(wtt==i);
+                      else
+                      {
+                          if(selectEx(proc,wtt,1)==0);
+                          else
+                          {
+                            AddNumb(proc,i,selectEx(proc,wtt,4)+quant,4);
+                          }
+                      }
+                  }
+                   waiting+=quant;
+                }
+                else if(selectEx(proc,i,1)>quant)
+                          { 
+                          AddNumb(proc,i,selectEx(proc,i,1)-quant,1);
+                    processes = insertBack(processes,selectEx(proc,i,0),selectEx(proc,i,1),selectEx(proc,i,2),selectEx(proc,i,3));
+                                      waiting+=quant;
+                       for(wtt=1;wtt<=sz;wtt++)
+                  {
+                      if(wtt==i);
+                      else
+                      {
+                          if(selectEx(proc,wtt,1)==0);
+                          else
+                          {
+                          AddNumb(proc,wtt,selectEx(proc,wtt,4)+quant,4);
+                          }
+                      }
+                  }
+                }
+                else if(selectEx(proc,wtt,1)<quant)
+                {                  
+                         waiting+=  selectEx(proc,i,1);
+                      for(wtt=1;wtt<=sz;wtt++)
+                  {
+                      if(wtt==i);
+                      else
+                      {
+                          if(selectEx(proc,wtt,1)==0);
+                          else
+                          {
+                            AddNumb(proc,wtt,selectEx(proc,wtt,4)+selectEx(proc,i,1),4);
+                          }
+                      }
+                  }
+                        AddNumb(proc,i,0,1);
+                    processes = insertBack(processes,selectEx(proc,i,0),selectEx(proc,i,1),selectEx(proc,i,2),selectEx(proc,i,3));
+                }
+            }
+        } 
+                         maxi-=quant;
+}
+printf("\nTurnAround Waiting time = %d\n",waiting);
+fp = fopen(output, "a");
+            fprintf(fp,"\nRound Robin Scheduling\n");
+fclose(fp);
+int avsum = 0 ;
+display(proc);
+    for(i = 1; i  <=sz;i++)
+        {
+            printf("\nP%d = %d \n",selectEx(proc,i,0),selectEx(proc,i,4)-selectEx(proc,i,2));
+            fp = fopen(output, "a");
+            fprintf(fp,"\nP%d = %d \n",selectEx(proc,i,0),selectEx(proc,i,4)-selectEx(proc,i,2));
+fclose(fp);
+            avsum+=selectEx(proc,i,4)-selectEx(proc,i,2);
+        }
+double averag = (double)avsum/(i-1);
+printf("\nAverage Waiting time : %f" , averag);
+fp = fopen(output, "a");
+fprintf(fp,"\nAverage Waiting time : %f" , averag);
+fclose(fp);
+}
+void FCFS(struct node *heade)
+{ int l = 0 ;char newV;
+while(l==0)
+{
+    printf("Do you want add new variables? y/n");
+    scanf("%c",&newV);
+   if(newV=='y') oneMore(heade);
+   else if(newV=='n') break;
+   else {printf("\nWrong choise select again\n");}
+}
+int sz  = siz(heade),waitingTime = 0;
+    struct node *header=NULL;
+    for(int i = 1;i<=sz;i++)
+    {
+    header=insertBack(header,selectEx(heade,i,0),selectEx(heade,i,1),selectEx(heade,i,2),selectEx(heade,i,3));
+}
+int  j;
+fp = fopen(output, "a");
+fprintf(fp,"\nFCFS  \n");
+fclose(fp);
+display(header);
+header=sortMassiv(header);
+display(header);
+printf("P1 = 0 ms\n");
+fp = fopen(output, "a");
+fprintf(fp,"\nFirst Come Fist Served\n");
+fprintf(fp,"P1 = 0 ms\n");
+fclose(fp);
+int temprar=0,wt=0,i=0;
+for( i = 1 ; i <sz;i++)
+{
+temprar+=selectEx(header,i,1);
+{
+waitingTime=temprar-selectEx(header,i+1,2);
+wt+=waitingTime;
+printf("P%d = %d ms\n",selectEx(header,i+1,0),waitingTime);
+fp = fopen(output, "a");
+fprintf(fp,"P%d = %d ms\n",selectEx(header,i+1,0),waitingTime);
+fclose(fp);
+}}
+double average;
+average = (double)wt/(i);
+fp = fopen(output, "a");
+fprintf(fp,"Average waiting time = %f",average);
+fclose(fp);
+printf("Average waiting time = %f",average);
+}
+void deletenode(struct node *&first, int data)
+{
+    struct node * current = first;
+    struct node * prev = (node *)malloc(sizeof(node));
+    while(current!=NULL)
+    {
+        if(current->art!=data)
+        {
+            prev=current;
+            current = current->next;
+        }
+        else
+        {
+            prev->next = current->next;
+            delete current;
+            break;
+        }
+    }
+}
