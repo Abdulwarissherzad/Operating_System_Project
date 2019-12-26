@@ -701,3 +701,59 @@ void deletenode(struct node *&first, int data)
         }
     }
 }
+int* select(struct node *header ,int position,int *some1,int *some2,int *some3,int *some4)
+{
+if (header == NULL)
+        printf("List is empty\n");
+    struct node *temp = header;
+int i =1 ;
+    while (temp != NULL)
+    {   if (i == position){
+        *some1 = temp->id;
+        *some2 = temp->bt;
+        *some3 = temp->art;
+        *some4 = temp->prior;
+        }
+        i++;
+        temp=temp->next;
+    }
+printf("\n");
+}
+int selectEx(struct node *header ,int position,int some)
+{
+    if (header == NULL)
+        printf("List is empty\n");
+    struct node *temp = header;
+int i =1 ;
+    while (temp != NULL)
+    {   if (i == position){
+        if(some==0) return temp->id;
+      else  if(some==1)
+       return temp->bt;
+       else  if(some==2)
+        return  temp->art;
+       else if(some==3)
+        return temp->prior;
+               else if(some==4)
+        return temp->wtt;
+        else {printf("\n No such variable\n");
+                return 0;}
+        }
+        i++;
+        temp=temp->next;
+    }
+printf("\n");
+}
+int siz(struct node *header)
+{
+ if (header == NULL)
+        printf("List is empty\n");
+int sizeHeader= 0;
+    struct node *temp = header;
+    while (temp != NULL)
+    {
+sizeHeader++;
+        temp=temp->next;
+    }
+return sizeHeader;
+}
