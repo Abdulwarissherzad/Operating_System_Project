@@ -757,3 +757,18 @@ sizeHeader++;
     }
 return sizeHeader;
 }
+struct node * insertBack(struct node *header,  int id,int bt,int art,int prior)
+{
+       struct node * temp = createNode(id,bt,art,prior);
+       struct node * headertemp;
+       if (header == NULL)
+       {
+          header = temp;
+          return header;
+       }
+       headertemp=header;
+       while(headertemp->next != NULL)
+            headertemp=headertemp->next;
+       headertemp->next = temp;    
+       return header;
+}
