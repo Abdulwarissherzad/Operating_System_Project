@@ -772,3 +772,21 @@ struct node * insertBack(struct node *header,  int id,int bt,int art,int prior)
        headertemp->next = temp;    
        return header;
 }
+struct node * insertFront(struct node *header,  int id,int bt,int art,int prior)
+{
+     struct node * temp = createNode(id,bt,art,prior);
+     temp->next = header;
+     header=temp;   
+     return header;
+}
+struct node * createNode(int id,int bt,int art,int prior)
+{
+     struct node * temp;
+     temp = (struct node *) malloc(sizeof(node));   
+     temp->id = id;
+     temp->bt=bt;
+     temp->art=art;
+     temp->prior=prior;
+     temp->next = NULL;
+     return temp;
+}
