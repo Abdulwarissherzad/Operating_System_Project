@@ -854,3 +854,112 @@ while(l==0)
    if(newV=='y') oneMore(header);
    else if(newV=='n') break;
 }
+printf("\nWrite quantum for each process :\n");
+int quant;
+scanf("%d",&quant);
+	int sz  = siz(header),waitingTime = 0;
+    int selectMass[4],LL[sz][5];
+int i = 0,temprar=0,wt=0;
+double average ;
+for(i = 1 ;i <=sz;i++){
+select(header,i,&selectMass[0],&selectMass[1],&selectMass[2],&selectMass[3]);
+LL[i][0]=selectMass[0];
+LL[i][1]=selectMass[1];
+LL[i][2]=selectMass[2];
+LL[i][3]=selectMass[3];
+LL[i][4]=0;
+}
+int exit = 0 ;
+int j = 0 ;
+for(i = 1 ; i <= sz; i++) {
+       for(j = 1 ; j <= sz - i  ; j++) {
+           if(LL[j][2] > LL[j+1][2]) {
+		    int tmp = LL[j][0];
+              LL[j][0] = LL[j+1][0] ;
+              LL[j+1][0] = tmp;
+              tmp = LL[j][1];
+              LL[j][1] = LL[j+1][1] ;
+              LL[j+1][1] = tmp;
+               tmp = LL[j][2];
+              LL[j][2] = LL[j+1][2] ;
+              LL[j+1][2] = tmp;
+               tmp = LL[j][3];
+              LL[j][3] = LL[j+1][3] ;
+              LL[j+1][3] = tmp;
+           }
+        }
+    }
+                  int wtt =0 ;
+
+    struct node *processes = NULL;
+    int maxi = 0;
+    for(i = 1 ; i <sz;i++)
+    {
+        if(LL[i][1]>LL[i+1][1]) maxi = LL[i][1];
+        }
+      int d = 0 ,kolvo =0 ,waiting =0 ;
+    for(int d = maxi ; d>=0;d-=quant)
+        {kolvo++;
+        for(i = 1; i<=sz;i++)
+        {
+            if(LL[i][1]!=0)
+            {
+                if(LL[i][1]==quant)
+                {
+                       LL[i][1]=0;
+                    processes = insertBack(processes,LL[i][0],LL[i][1],LL[i][2],LL[i][3]);
+                  for(wtt=1;wtt<=sz;wtt++)
+                  {
+                      if(wtt==i);
+                      else
+                      {
+                          if(LL[wtt][1]==0);
+                          else
+                          {
+                              LL[wtt][4]+=quant;
+                          }
+                      }
+                  }
+                   waiting+=quant;
+                }
+                else if(LL[i][1]>quant)
+                          { LL[i][1]-=quant;
+                    processes = insertBack(processes,LL[i][0],LL[i][1],LL[i][2],LL[i][3]);
+                                      waiting+=quant;
+                       for(wtt=1;wtt<=sz;wtt++)
+                  {
+                      if(wtt==i);
+                      else
+                      {
+                          if(LL[wtt][1]==0);
+                          else
+                          {
+                              LL[wtt][4]+=quant;
+                          }
+                      }
+                  }
+                }
+                else if(LL[i][1]<quant)
+                {
+                         waiting+=  LL[i][1];
+                      for(wtt=1;wtt<=sz;wtt++)
+                  {
+                      if(wtt==i);
+                      else
+                      {
+                          if(LL[wtt][1]==0);
+                          else
+                          {
+                              LL[wtt][4]+=LL[i][1];
+                          }
+                      }
+                  }
+
+                      LL[i][1] = 0;
+                processes = insertBack(processes,LL[i][0],LL[i][1],LL[i][2],LL[i][3]);
+                }
+            }
+
+        } 
+  maxi-=quant;
+}
