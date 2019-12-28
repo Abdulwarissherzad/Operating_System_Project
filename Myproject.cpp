@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <unistd.h>
 
-#define LINE_MAX 1000
+#define LINE_MAX 999
 
 using namespace std;
 unsigned int num[3];
@@ -983,4 +983,17 @@ fp = fopen(output, "a");
 fprintf(fp,"\nAverage Waiting time : %f" , averag);
 fclose(fp);
 }
-
+struct node *deleteBack(struct node *header){
+    struct node *temp, *headertemp;
+    if(header==NULL){
+        return header;
+    }
+	headertemp=header;
+	while(headertemp->next->next!=NULL){
+        headertemp =headertemp->next;
+	} 
+	temp=headertemp->next;
+    headertemp->next=NULL;
+    free(temp);
+	return header;
+}
