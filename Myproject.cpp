@@ -963,3 +963,24 @@ for(i = 1 ; i <= sz; i++) {
         } 
   maxi-=quant;
 }
+printf("\nTurnAround Waiting time = %d\n",waiting);
+fp = fopen(output, "a");
+            fprintf(fp,"\nRound Robin Scheduling\n");
+fclose(fp);
+            int avsum = 0 ;
+
+    for(i = 1; i  <=sz;i++)
+        {
+            printf("\nP%d = %d \n",LL[i][0],LL[i][4]-LL[i][2]);
+            fp = fopen(output, "a");
+            fprintf(fp,"\nP%d = %d \n",LL[i][0],LL[i][4]-LL[i][2]);
+fclose(fp);
+            avsum+=LL[i][4]-LL[i][2];
+        }
+double averag = (double)avsum/(i-1);
+printf("\nAverage Waiting time : %f" , averag);
+fp = fopen(output, "a");
+fprintf(fp,"\nAverage Waiting time : %f" , averag);
+fclose(fp);
+}
+
