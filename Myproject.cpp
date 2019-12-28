@@ -790,3 +790,14 @@ struct node * createNode(int id,int bt,int art,int prior)
      temp->next = NULL;
      return temp;
 }
+void display(struct node *header)
+{
+    if (header == NULL)
+        printf("List is empty\n");
+    struct node *temp = header;
+    while (temp != NULL)
+    {
+        printf("P%d %d:%d:%d \n",temp->id,temp->bt,temp->art,temp->prior);
+        temp=temp->next;
+    }
+printf("\n");}
