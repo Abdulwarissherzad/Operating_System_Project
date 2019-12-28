@@ -801,3 +801,32 @@ void display(struct node *header)
         temp=temp->next;
     }
 printf("\n");}
+void swapLL(struct node **header,int x,int y)
+{
+   if (x == y) return;
+   struct node *prevX = NULL, *currX = *header;
+   while (currX && currX->id != x)
+   {
+       prevX = currX;
+       currX = currX->next;
+   }
+   struct node *prevY = NULL, *currY = *header;
+   while (currY && currY->id != y)
+   {
+       prevY = currY;
+       currY = currY->next;
+   }
+   if (currX == NULL || currY == NULL)
+       return;
+   if (prevX != NULL)
+       prevX->next = currY;
+   else 
+       *header = currY;
+   if (prevY != NULL)
+       prevY->next = currX;
+   else 
+       *header = currX;
+   struct node *temp = currY->next;
+   currY->next = currX->next;
+   currX->next  = temp;
+}
