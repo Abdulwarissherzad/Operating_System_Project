@@ -830,3 +830,27 @@ void swapLL(struct node **header,int x,int y)
    currY->next = currX->next;
    currX->next  = temp;
 }
+void AddNumb(struct node *header,int fromWhere,int numb,int what)
+{
+    while(header->id!=fromWhere)
+    {
+        {
+          header = header->next;
+        }
+    }
+    if(header->id==fromWhere)
+        if(what==1) header->bt=numb;
+           else if(what==2) header->art=numb;
+           else if(what==3) header->prior=numb;
+                      else if(what==4) header->wtt=numb;
+        else{ printf("\nWRONG!!!\n") ;return;}
+}
+void RR(struct node *header)
+{int l = 0 ;char newV;
+while(l==0)
+{
+    printf("Do you want add new variables? y/n");
+    scanf("%c",&newV);
+   if(newV=='y') oneMore(header);
+   else if(newV=='n') break;
+}
